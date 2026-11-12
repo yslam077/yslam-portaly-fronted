@@ -1,0 +1,191 @@
+/* ═══════════════════════════════════════════════════════════════
+   Yslam Portaly — effects.css
+   Uses your existing theme variables (--brand-color, --bg-card, ...)
+   so it follows light (red+white) and dark (dark+gold) automatically.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --fx-ease: cubic-bezier(.2, .8, .2, 1);
+  --fx-glow: color-mix(in srgb, var(--brand-color, #dc2626) 45%, transparent);
+  --fx-glow-soft: color-mix(in srgb, var(--brand-color, #dc2626) 16%, transparent);
+  --fx-brand-dark: color-mix(in srgb, var(--brand-color, #dc2626) 62%, #000);
+}
+
+html { scroll-behavior: smooth; }
+::selection { background: var(--brand-color, #dc2626); color: #fff; }
+
+/* ── scrollbar ── */
+* { scrollbar-width: thin; scrollbar-color: var(--brand-color, #dc2626) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--brand-color, #dc2626), var(--fx-brand-dark));
+  border-radius: 10px;
+  border: 2px solid var(--bg-primary, #fff);
+}
+.scrollbar-hide { scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+/* ── glass header ── */
+.fx-glass {
+  background: color-mix(in srgb, var(--bg-primary, #fff) 78%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  backdrop-filter: blur(16px) saturate(170%);
+}
+.fx-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+}
+
+/* ── 3D tilt card  (v-tilt) ── */
+.fx-tilt {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--s, 1));
+  transition: transform .5s var(--fx-ease), box-shadow .35s, border-color .3s;
+  will-change: transform;
+}
+.fx-tilt.is-active {
+  --s: 1.025;
+  transition: transform .09s linear, box-shadow .35s, border-color .3s;
+  border-color: var(--brand-color) !important;
+  box-shadow: 0 24px 46px -20px rgba(0, 0, 0, .5), 0 0 0 1px var(--fx-glow-soft), 0 0 40px -10px var(--fx-glow);
+}
+.fx-tilt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  opacity: 0; transition: opacity .3s;
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .32), transparent 46%);
+  mix-blend-mode: soft-light;
+}
+.fx-tilt.is-active::after { opacity: 1; }
+
+/* ── spotlight that follows the mouse  (v-spot) ── */
+.fx-spot { isolation: isolate; }
+.fx-spot::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none;
+  opacity: 0; transition: opacity .35s;
+  background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), var(--fx-glow-soft), transparent 62%);
+}
+.fx-spot:hover::before { opacity: 1; }
+
+/* ── scroll reveal  (v-reveal) ── */
+.fx-reveal {
+  opacity: 0; transform: translate3d(0, 30px, 0) scale(.97); filter: blur(6px);
+  transition: opacity .8s var(--fx-ease), transform .8s var(--fx-ease), filter .8s var(--fx-ease);
+  transition-delay: var(--d, 0ms);
+}
+.fx-reveal.is-visible { opacity: 1; transform: none; filter: none; }
+
+/* ── magnetic  (v-magnetic) ── */
+.fx-magnetic { transition: transform .35s var(--fx-ease); will-change: transform; }
+
+/* ── buttons ── */
+.fx-btn { position: relative; overflow: hidden; transition: transform .25s var(--fx-ease), box-shadow .3s, filter .3s; }
+.fx-btn::after {
+  content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent);
+  transform: skewX(-20deg); transition: left .75s var(--fx-ease);
+}
+.fx-btn:hover::after { left: 135%; }
+.fx-btn:active { scale: .96; }
+.fx-btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-color), var(--fx-brand-dark));
+  box-shadow: 0 8px 20px -8px var(--fx-glow);
+}
+.fx-btn-primary:hover { box-shadow: 0 14px 30px -8px var(--fx-glow); filter: brightness(1.08); }
+.fx-btn-primary:disabled { filter: grayscale(.4); }
+
+/* ── chips (category pills) ── */
+.fx-chip {
+  position: relative; overflow: hidden; isolation: isolate;
+  transition: color .3s, border-color .3s, transform .3s var(--fx-ease), box-shadow .3s;
+}
+.fx-chip::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--brand-color);
+  transform: translateY(101%); transition: transform .35s var(--fx-ease);
+}
+.fx-chip:hover { color: #fff !important; transform: translateY(-3px); box-shadow: 0 12px 24px -12px var(--fx-glow); }
+.fx-chip:hover::before { transform: none; }
+
+/* ── nav underline ── */
+.fx-navlink { position: relative; }
+.fx-navlink::after {
+  content: ""; position: absolute; left: 50%; bottom: 2px; height: 2px; width: 0; border-radius: 2px;
+  background: var(--brand-color); transform: translateX(-50%); transition: width .3s var(--fx-ease);
+}
+.fx-navlink:hover::after { width: 55%; }
+
+/* ── headings & text ── */
+.fx-title { position: relative; display: inline-block; padding-left: 16px; font-weight: 800; }
+.fx-title::before {
+  content: ""; position: absolute; left: 0; top: 14%; bottom: 14%; width: 5px; border-radius: 5px;
+  background: linear-gradient(var(--brand-color), color-mix(in srgb, var(--brand-color) 35%, #fff));
+  box-shadow: 0 0 14px var(--fx-glow);
+}
+.fx-gradient-text {
+  background: linear-gradient(90deg, var(--brand-color), color-mix(in srgb, var(--brand-color) 45%, #f59e0b), var(--brand-color));
+  background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: fx-shift 6s linear infinite;
+}
+.fx-rise { animation: fx-rise .8s var(--fx-ease) both; }
+.fx-rise-2 { animation: fx-rise .8s .12s var(--fx-ease) both; }
+
+/* ── logo 3D spin ── */
+.group:hover .fx-spin-y, .fx-spin-y:hover { animation: fx-spin-y .9s var(--fx-ease); }
+
+/* ── hero banner ── */
+.fx-banner-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s ease; }
+.fx-banner-slide.is-active { opacity: 1; }
+.fx-parallax-layer { position: absolute; inset: -26px; transform: translate3d(var(--px, 0px), var(--py, 0px), 0); transition: transform .35s ease-out; }
+.fx-banner-img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.fx-banner-slide.is-active .fx-banner-img { animation: fx-kenburns 9s ease-out forwards; }
+.fx-hero-fallback {
+  background: linear-gradient(120deg, var(--brand-color), var(--fx-brand-dark), var(--brand-color));
+  background-size: 220% 220%; animation: fx-gradient 10s ease infinite;
+}
+.fx-timer { display: block; width: 100%; height: 100%; transform-origin: left; animation: fx-timer 5s linear forwards; }
+.fx-banner:hover .fx-timer { animation-play-state: paused; }
+
+/* ── article text ── */
+.fx-prose { font-size: 1.04rem; line-height: 1.85; }
+.fx-prose > * + * { margin-top: 1.1em; }
+.fx-prose h2, .fx-prose h3 { font-weight: 800; font-size: 1.4em; margin-top: 1.6em; color: var(--text-primary); }
+.fx-prose a { color: var(--brand-color); text-decoration: underline; text-underline-offset: 3px; }
+.fx-prose img { border-radius: 1rem; max-width: 100%; height: auto; margin-inline: auto; }
+.fx-prose blockquote { border-left: 4px solid var(--brand-color); padding: .4em 1.1em; font-style: italic; background: var(--fx-glow-soft); border-radius: 0 .75rem .75rem 0; }
+.fx-prose ul { list-style: disc; padding-left: 1.4em; }
+.fx-prose ol { list-style: decimal; padding-left: 1.4em; }
+
+/* ── skeleton ── */
+.fx-shimmer { position: relative; overflow: hidden; }
+.fx-shimmer::after {
+  content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .14), transparent);
+  animation: fx-shimmer 1.4s infinite;
+}
+
+/* ── transitions ── */
+.page-enter-active, .page-leave-active { transition: opacity .35s ease, transform .4s var(--fx-ease); }
+.page-enter-from { opacity: 0; transform: translateY(16px); }
+.page-leave-to { opacity: 0; transform: translateY(-8px); }
+.fx-list-enter-active { transition: all .55s var(--fx-ease); }
+.fx-list-enter-from { opacity: 0; transform: translateY(-16px) scale(.97); }
+.fx-swap-enter-active, .fx-swap-leave-active { transition: opacity .25s ease, transform .3s var(--fx-ease); }
+.fx-swap-enter-from { opacity: 0; transform: translateX(24px); }
+.fx-swap-leave-to { opacity: 0; transform: translateX(-24px); }
+
+/* ── keyframes ── */
+@keyframes fx-shift { to { background-position: 200% center; } }
+@keyframes fx-gradient { 50% { background-position: 100% 50%; } }
+@keyframes fx-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes fx-kenburns { from { transform: scale(1.02); } to { transform: scale(1.16); } }
+@keyframes fx-timer { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes fx-shimmer { to { transform: translateX(100%); } }
+@keyframes fx-spin-y { from { transform: perspective(300px) rotateY(0); } to { transform: perspective(300px) rotateY(360deg); } }
+@keyframes fx-float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-14px) rotate(2deg); } }
+@keyframes fx-pulse-ring { 0% { box-shadow: 0 0 0 0 var(--fx-glow); } 100% { box-shadow: 0 0 0 16px transparent; } }
+@keyframes fx-blob { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(40px, -30px, 0) scale(1.18); } }
+
+/* ── accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .fx-reveal { opacity: 1; transform: none; filter: none; }
+}
