@@ -140,7 +140,7 @@ onMounted(loadData)
           <div class="fx-banner-img" :style="b.image ? { backgroundImage: `url('${b.image}')` } : {}"></div>
         </div>
       </div>
-      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent transition-opacity duration-700" :class="banners.length && !getLocalized(banners[activeBannerIndex]?.title) ? 'opacity-0' : 'opacity-100'"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
       <!-- top: counter -->
@@ -152,8 +152,11 @@ onMounted(loadData)
 
       <!-- text -->
       <div :key="activeBannerIndex" class="relative z-10">
-        <h2 class="fx-rise text-2xl md:text-4xl font-black uppercase tracking-wide drop-shadow-lg max-w-2xl leading-tight">
-          {{ banners.length ? getLocalized(banners[activeBannerIndex]?.title) || t('banner_text') : t('banner_text') }}
+        <h2
+          v-if="!banners.length || getLocalized(banners[activeBannerIndex]?.title)"
+          class="fx-rise text-2xl md:text-4xl font-black uppercase tracking-wide drop-shadow-lg max-w-2xl leading-tight"
+        >
+          {{ banners.length ? getLocalized(banners[activeBannerIndex]?.title) : t('banner_text') }}
         </h2>
         <p v-if="banners[activeBannerIndex]?.description" class="fx-rise-2 mt-2 text-sm md:text-base opacity-90 max-w-lg line-clamp-2">
           {{ getLocalized(banners[activeBannerIndex]?.description) }}

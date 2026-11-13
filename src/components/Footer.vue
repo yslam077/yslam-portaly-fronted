@@ -113,6 +113,9 @@ const links = computed(() => (categoriesStore.categories || []).slice(0, 7))
                 <svg class="shrink-0 text-[var(--brand-color)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
                 <span><span class="font-medium">{{ t('address') }}:</span> Aşgabat ş., Türkmenistan</span>
               </li>
+              <li>
+                  <router-link to="/about" class="fx-gradient-text text-xl md:text-2xl font-black tracking-tight">{{ t('about_title') }}</router-link>
+                </li>
             </ul>
           </div>
         </div>

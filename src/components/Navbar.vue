@@ -74,6 +74,7 @@ function getCategoryName(category) {
         <span class="fx-spin-y fx-btn-primary grid place-items-center w-9 h-9 rounded-xl font-black text-lg">Y</span>
         <span class="fx-gradient-text text-xl md:text-2xl font-black tracking-tight">{{ t('site_title') }}</span>
       </router-link>
+      <router-link to="/about" class="fx-gradient-text text-xl md:text-2xl font-black tracking-tight">{{ t('about_title') }}</router-link>
 
       <!-- Search -->
       <form @submit.prevent="handleSearch" class="flex-1 min-w-0 max-w-xs sm:max-w-md transition-[max-width] duration-500 focus-within:max-w-lg">

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="0 0 1600 400" font-family="Inter, 'DejaVu Sans', Arial, sans-serif">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset=".6" stop-color="#1b1233"/><stop offset="1" stop-color="#3b0a1f"/></linearGradient>
+ <radialGradient id="g1" cx=".85" cy=".2" r=".55"><stop offset="0" stop-color="#f59e0b" stop-opacity=".5"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient>
+ <radialGradient id="g2" cx=".05" cy=".95" r=".5"><stop offset="0" stop-color="#ef4444" stop-opacity=".4"/><stop offset="1" stop-color="#ef4444" stop-opacity="0"/></radialGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset=".5" stop-color="#f59e0b"/><stop offset="1" stop-color="#b45309"/></linearGradient>
+ <linearGradient id="bag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ef4444"/><stop offset="1" stop-color="#9f1239"/></linearGradient>
+ <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#fff" fill-opacity=".09"/></pattern>
+ <filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#000" flood-opacity=".5"/></filter>
+</defs>
+<rect width="1600" height="400" fill="url(#bg)"/><rect width="1600" height="400" fill="url(#g1)"/><rect width="1600" height="400" fill="url(#g2)"/><rect width="1600" height="400" fill="url(#dots)"/>
+<!-- boxes -->
+<g filter="url(#sh)"><path d="M1000 170 l62 31.0 l-62 31.0 l-62 -31.0 Z" fill="#fde68a"/>
+<path d="M938 201.0 l62 31.0 v62 l-62 -31.0 Z" fill="#f59e0b"/><path d="M1062 201.0 l-62 31.0 v62 l62 -31.0 Z" fill="#b45309"/>
+<path d="M972.1 202.55 l55.800000000000004 27.900000000000002 " stroke="#fff" stroke-opacity=".45" stroke-width="6" stroke-linecap="round"/></g>
+<g filter="url(#sh)"><path d="M1500 215 l44 22.0 l-44 22.0 l-44 -22.0 Z" fill="#fca5a5"/>
+<path d="M1456 237.0 l44 22.0 v44 l-44 -22.0 Z" fill="#ef4444"/><path d="M1544 237.0 l-44 22.0 v44 l44 -22.0 Z" fill="#991b1b"/>
+<path d="M1480.2 238.1 l39.6 19.8 " stroke="#fff" stroke-opacity=".45" stroke-width="6" stroke-linecap="round"/></g>
+<g filter="url(#sh)"><path d="M930 70 l34 17.0 l-34 17.0 l-34 -17.0 Z" fill="#c4b5fd"/>
+<path d="M896 87.0 l34 17.0 v34 l-34 -17.0 Z" fill="#7c3aed"/><path d="M964 87.0 l-34 17.0 v34 l34 -17.0 Z" fill="#4c1d95"/>
+<path d="M914.7 87.85 l30.6 15.3 " stroke="#fff" stroke-opacity=".45" stroke-width="6" stroke-linecap="round"/></g>
+<!-- bag -->
+<g transform="translate(1135 70) rotate(-5)" filter="url(#sh)">
+ <path d="M70 60 C70 -10 190 -10 190 60" fill="none" stroke="url(#gold)" stroke-width="14" stroke-linecap="round"/>
+ <path d="M20 60 H240 L262 290 Q264 310 244 310 H16 Q-4 310 -2 290 Z" fill="url(#bag)"/>
+ <path d="M20 60 H240 L246 118 H14 Z" fill="#fff" fill-opacity=".12"/>
+ <circle cx="130" cy="190" r="52" fill="url(#gold)"/>
+ <text x="130" y="213" text-anchor="middle" font-size="68" font-weight="900" fill="#451a03">Y</text>
+</g>
+<path d="M1060 40 l8 20 20 8 -20 8 -8 20 -8 -20 -20 -8 20 -8 Z" fill="#fde68a"/><path d="M1475 330 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 Z" fill="#fff" fill-opacity=".8"/>
+<!-- text -->
+<text x="90" y="92" font-size="30" font-weight="800" letter-spacing="10" fill="url(#gold)">ONLINE DÜKAN</text>
+<text x="86" y="176" font-size="92" font-weight="900" fill="#fff" letter-spacing="-1">YSLAM</text>
+<text x="86" y="260" font-size="92" font-weight="900" fill="url(#gold)" letter-spacing="-1">SHOP CHINA</text>
+<rect x="90" y="286" width="350" height="40" rx="20" fill="#ffffff" /><text x="265.0" y="312" text-anchor="middle" font-size="16" font-weight="800" letter-spacing="1.2" fill="#1b1233">TikTok  yslam.shop.china</text>
+<rect x="452" y="286" width="389" height="40" rx="20" fill="#ffffff" /><text x="646.5" y="312" text-anchor="middle" font-size="16" font-weight="800" letter-spacing="1.2" fill="#1b1233">Instagram  yslam_shop_china</text>
+<rect x="90" y="340" width="330" height="40" rx="20" fill="url(#gold)"/>
+<text x="255" y="367" text-anchor="middle" font-size="20" font-weight="900" letter-spacing="1.5" fill="#451a03">☎ +993&#160;61&#160;90&#160;80&#160;91</text>
+</svg>
